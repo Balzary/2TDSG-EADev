@@ -61,6 +61,22 @@ public class Zoologico {
 	public Zoologico() {
 		super();
 	}
+	
+
+	public Zoologico(String nome, int qtAnimais, Alimentacao tipo, Date abertura, Date fechamento, Date inauguracao,
+			boolean emergencia, boolean aberto) {
+		super();
+		this.nome = nome;
+		this.qtAnimais = qtAnimais;
+		this.tipo = tipo;
+		this.abertura = abertura;
+		this.fechamento = fechamento;
+		this.inauguracao = inauguracao;
+		this.emergencia = emergencia;		
+		this.aberto = aberto;
+	}
+
+
 
 	public int getCodigo() {
 		return codigo;
