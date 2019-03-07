@@ -23,9 +23,7 @@ public class Veiculo {
 	private String cor;
 	@Column(name="nr_ano")
 	private int ano;
-	
-	
-	
+		
 	
 	public Veiculo(String placa, String cor, int ano) {
 		super();

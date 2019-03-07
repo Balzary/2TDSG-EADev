@@ -15,12 +15,10 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="T_MOTORISTA")
-@SequenceGenerator(name="motorista", sequenceName="SQ_T_MOTORISTA", allocationSize=1)
 public class Motorista {
 	
 	@Id
 	@Column(name="nr_carteira")
-	@GeneratedValue(generator="motorista", strategy=GenerationType.SEQUENCE)
 	private int carteira;
 	@Column(name="nm_motorista", nullable=false, length=150)
 	private String nome;
