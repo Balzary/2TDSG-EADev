@@ -56,9 +56,6 @@ public abstract class GenericDAOImpl<T,K> implements GenericDAO<T,K> {
 			e.printStackTrace();
 			em.getTransaction().rollback();
 			throw new CommitException();
-		}
-		
+		}		
 	}
-
-
 }
