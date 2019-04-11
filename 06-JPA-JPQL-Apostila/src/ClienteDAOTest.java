@@ -16,6 +16,7 @@ import br.com.fiap.entity.Cliente;
 class ClienteDAOTest {
 
 	private static ClienteDAO dao;
+	
 	@BeforeAll
 	public static void instanciar() {
 		EntityManager em = EntityManagerFactorySingleton.getInstance().createEntityManager();
@@ -34,4 +35,13 @@ class ClienteDAOTest {
 		assertEquals(1 , lista.size());
 	}
 
+	@Test
+	void getAllByEstadoTest() {
+		List<Cliente> lista = dao.getAllByEstado("SP");
+		assertNotEquals(0,lista.size());
+		
+		for(Cliente cliente : lista) {
+			assertEquals("SP", cliente.getEndereco().getCidade().getUf());
+		}
+	}
 }

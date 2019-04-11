@@ -27,4 +27,11 @@ public class ClienteDAOImpl extends GenericDAOImpl<Cliente,Integer> implements C
 		return q.getResultList();
 	}
 
+	@Override
+	public List<Cliente> getAllByEstado(String estado) {
+		return em.createQuery("from Cliente c where c.endereco.cidade.uf = :e",Cliente.class)
+				.setParameter("e", estado)
+				.getResultList();
+	}
+
 }

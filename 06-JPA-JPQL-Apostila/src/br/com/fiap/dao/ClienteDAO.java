@@ -9,4 +9,7 @@ public interface ClienteDAO extends GenericDAO<Cliente,Integer>{
 	List<Cliente> listar();
 	
 	List<Cliente> listaNomeCliente(String n);
+	
+	List<Cliente> getAllByEstado(String estado);
+	
 }
