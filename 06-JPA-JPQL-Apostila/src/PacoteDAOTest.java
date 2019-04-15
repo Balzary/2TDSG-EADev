@@ -1,6 +1,8 @@
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -29,5 +31,15 @@ class PacoteDAOTest {
 		List<Pacote> lista = dao.listarPorTransporte(t1);
 		assertEquals(2,lista.size());
 	}
-
+	
+	@Test
+	void testBuscaData() {
+		Calendar init = new GregorianCalendar(2017, Calendar.JANUARY, 1);
+		Calendar fim = new GregorianCalendar(2018, Calendar.JANUARY, 1);		
+		
+		List<Pacote> lista = dao.listarPacotesData(init, fim);
+		for(Pacote pacote : lista) {
+			assertTrue(pacote.getDataSaida().after(init) && pacote.getDataSaida().before(fim));
+		}
+	}
 }

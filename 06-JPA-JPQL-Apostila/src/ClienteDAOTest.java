@@ -1,5 +1,6 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -44,4 +45,19 @@ class ClienteDAOTest {
 			assertEquals("SP", cliente.getEndereco().getCidade().getUf());
 		}
 	}
+	
+	@Test
+	void buscarNomeCidade() {	
+		
+		List<Cliente> lista = dao.buscar("Leandro", "Lon");
+		for(Cliente cliente : lista) {
+			assertTrue(cliente.getNome().contains("Leandro") && cliente.getEndereco().getCidade().getNome().contains("Lon"));
+		}
+	}
+	/*
+	@Test 
+	void buscarPorEstado() {
+		
+	}
+	*/
 }
