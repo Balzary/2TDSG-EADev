@@ -22,7 +22,7 @@ public class ClienteDAOImpl extends GenericDAOImpl<Cliente,Integer> implements C
 	
 	@Override	
 	public List<Cliente> listaNomeCliente(String n) {
-		TypedQuery<Cliente> q = em.createQuery("from Cliente c where c.nome like :name", Cliente.class);
+		TypedQuery<Cliente> q = em.createQuery("from Cliente c where upper(c.nome) like upper(:name)", Cliente.class);
 		q.setParameter("name", "%"+n+"%");
 		return q.getResultList();
 	}
@@ -48,5 +48,19 @@ public class ClienteDAOImpl extends GenericDAOImpl<Cliente,Integer> implements C
 		q.setParameter("estados", estados);
 		return q.getResultList();
 	}
+
+	@Override
+	public long clientCount(String estado) {
+		return em.createQuery("Select count(c) from Cliente c where c.endereco.cidade.uf = :e", Long.class)
+				.setParameter("e", estado).getSingleResult();
+	}
+
+	@Override
+	public Cliente getByCpf(String cpf) {
+		return em.createNamedQuery("Cliente.porCpf", Cliente.class).setParameter("cpf", cpf).getSingleResult();
+	}
+	
+	
+	
 
 }

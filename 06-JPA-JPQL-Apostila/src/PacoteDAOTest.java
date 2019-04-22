@@ -1,5 +1,5 @@
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -40,6 +40,21 @@ class PacoteDAOTest {
 		List<Pacote> lista = dao.listarPacotesData(init, fim);
 		for(Pacote pacote : lista) {
 			assertTrue(pacote.getDataSaida().after(init) && pacote.getDataSaida().before(fim));
+		}
+	}
+	
+	@Test
+	void testSum() {
+		Transporte t = em.find(Transporte.class, 1);
+		double price = dao.priceSum(t);
+		assertEquals(4300,price);
+	}
+	
+	@Test
+	void precoMaxTeste() {
+		List<Pacote> p = dao.buscarPorPrecoMaximo(3000d);
+		for (Pacote pacote : p) {
+			assertTrue(pacote.getPreco()< 3000);
 		}
 	}
 }

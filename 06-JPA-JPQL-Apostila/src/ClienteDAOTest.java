@@ -1,6 +1,7 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 
@@ -54,10 +55,17 @@ class ClienteDAOTest {
 			assertTrue(cliente.getNome().contains("Leandro") && cliente.getEndereco().getCidade().getNome().contains("Lon"));
 		}
 	}
-	/*
+	
 	@Test 
-	void buscarPorEstado() {
-		
+	void countByEstadoTeste() {
+		long qtd = dao.clientCount("SP");
+		assertEquals(1,qtd);
 	}
-	*/
+	
+	@Test
+	void getByCpfTest() {
+		Cliente c = dao.getByCpf("98728018736");
+		assertNotNull(c);
+		assertEquals("98728018736", c.getCpf());
+	}
 }
